@@ -6,11 +6,13 @@ import {
   OnInit
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
 
+import { AuthService } from './auth.service';
 import { AlertComponent } from '../shared/alert/alert.component';
 import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
+import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
 
@@ -54,14 +56,9 @@ export class AuthComponent implements OnInit, OnDestroy {
     const password = form.value.password;
 
     if (this.isLoginMode) {
-      // authObs = this.authService.login(email, password);
-      this.store.dispatch(
-        new AuthActions.LoginStart({ email: email, password: password })
-      );
+      this.store.dispatch(new AuthActions.LoginStart({email: email, password: password}));
     } else {
-      this.store.dispatch(
-        new AuthActions.SignupStart({ email: email, password: password })
-      );
+      this.store.dispatch(new AuthActions.SignupStart({email: email, password: password}));
     }
 
     form.reset();

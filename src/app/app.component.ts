@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 
+import { AuthService } from './auth/auth.service';
 import { LoggingService } from './logging.service';
+import { Store } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import * as AuthActions from './auth/store/auth.actions';
 
